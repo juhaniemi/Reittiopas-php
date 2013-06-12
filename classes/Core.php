@@ -108,16 +108,27 @@ class Reittiopas
 		return $this->httpRequest($url);
 	}
 
-	/**
-	 * Get line information.
-	 *
-	 * @param Lines $lines
-	 * @return void
-	 */
-	public function getLineInformation(LineInformation $lines) {
-		$url = $lines->getUriLineInformation();
-		return $this->httpRequest($url);
-	}
+  /**
+ 	 * Get line information.
+ 	 *
+ 	 * @param Lines $lines
+ 	 * @return void
+ 	 */
+ 	public function getLineInformation(LineInformation $lines) {
+ 		$url = $lines->getUriLineInformation();
+ 		return $this->httpRequest($url);
+ 	}
+
+  /**
+ 	 * Get address by reverse geocode.
+ 	 *
+ 	 * @param ReverseGeocode $reverse_geocode
+ 	 * @return void
+ 	 */
+ 	public function getReverseGeocode(ReverseGeocode $reverse_geocode) {
+ 		$url = $reverse_geocode->getUriReverseGeocode();
+ 		return $this->httpRequest($url);
+ 	}
 
 	/**
 	 * Format url required parameters.

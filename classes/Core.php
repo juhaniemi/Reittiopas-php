@@ -11,7 +11,7 @@ class Reittiopas
 	 * 
 	 * @var string
 	 */	
-	private static $_baseUrl = 'http://api.reittiopas.fi/hsl/test/?';
+	private static $_baseUrl = 'http://api.reittiopas.fi/hsl/1_2_0/?';
 	
 	/**
 	 * API user

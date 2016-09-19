@@ -1,49 +1,49 @@
 <?php
 /*
- * Requirements: API requires authentication. 
- * 
+ * Requirements: API requires authentication.
+ *
  * */
 
 class Reittiopas
 {
 	/**
 	 * API base-url
-	 * 
+	 *
 	 * @var string
-	 */	
-	private static $_baseUrl = 'http://api.reittiopas.fi/hsl/1_2_0/?';
-	
+	 */
+	private static $_baseUrl = 'http://api.reittiopas.fi/hsl/1_2_1/?';
+
 	/**
 	 * API user
-	 * 
+	 *
 	 * @var string
 	 */
 	private $_user;
-	
+
 	/**
 	 * API password
-	 * 
+	 *
 	 * @var string
 	 */
 	private $_pass;
-	
+
 	/**
 	 * Input coordinatesystem
-	 * 
+	 *
 	 * @var string
 	 */
 	private $_epsgIn;
-	
+
 	/**
 	 * Output coordinatesystem
-	 * 
+	 *
 	 * @var string
 	 */
 	private $_epsgOut;
-	
+
 	/**
 	 * Output format json/xml/txt
-	 * 
+	 *
 	 * @var string
 	 */
 	private $_format;
@@ -63,10 +63,10 @@ class Reittiopas
 		$this->_epsgOut = $epsgOut;
 		$this->_format = $format;
 	}
-	
+
 	/**
 	 * Get stops in area.
-	 * 
+	 *
 	 * @param StopsInArea $stopsArea
 	 * @return void
 	 */
@@ -74,7 +74,7 @@ class Reittiopas
 		$url = $stopsArea->getUriStopsInArea();
 		return $this->httpRequest($url);
 	}
-	
+
 	/**
 	 * Get cycleroute.
 	 *
@@ -85,10 +85,10 @@ class Reittiopas
 		$url = $cycleRoute->getUriCycleRoute();
 		return $this->httpRequest($url);
 	}
-	
+
 	/**
 	 * Get stopinformation.
-	 * 
+	 *
 	 * @param StopInformation $stopInformation
 	 * @return void
 	 */
@@ -96,10 +96,10 @@ class Reittiopas
 		$url = $stopInformation->getUriStopInformation();
 		return $this->httpRequest($url);
 	}
-	
+
 	/**
 	 * Get route.
-	 * 
+	 *
 	 * @param Route $route
 	 * @return void
 	 */
@@ -138,7 +138,7 @@ class Reittiopas
 		return sprintf("&user=%s&pass=%s&epsg_in=%s&epsg_out=%s&format=%s",
 		$this->_user, $this->_pass, $this->_epsgIn, $this->_epsgOut, $this->_format);
 	}
-	
+
 	/**
 	 * Execute HTTP-request.
 	 * @param string $url
@@ -160,15 +160,15 @@ class Reittiopas
 		$response = $this->handleResponse($response);
 		return $response;
 	}
-	
+
 	/**
 	 * Return either json or xml.
-	 * 
+	 *
 	 * @param string $response
 	 * @return json/xml
 	 */
 	private function handleResponse($response) {
     return ($this->_format == 'json') ? json_decode($response) : simplexml_load_string($response);
 	}
-	
+
 }
